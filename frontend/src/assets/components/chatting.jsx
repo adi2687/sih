@@ -7,7 +7,7 @@ export default function ChatInterface() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
-
+  
   // Scroll to bottom whenever messages change
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -31,7 +31,7 @@ export default function ChatInterface() {
   
       const data = await res.json(); // data.data is already an object
       const steps = data.data || {};
-  
+      
       // Append each step as a separate Gemini message
       const stepMessages = Object.entries(steps).map(([key, value]) => ({
         text: `${key}. ${value}`,
@@ -52,19 +52,26 @@ export default function ChatInterface() {
   };
   
 
-  // Load last prediction from localStorage on mount
+
+  const hasFetchedOnMount = useRef(false);
+
   useEffect(() => {
+    if (hasFetchedOnMount.current) return;
+  
     const recordStr = localStorage.getItem("record");
     if (!recordStr) return;
-
+  
     const record = JSON.parse(recordStr);
-    const preinput =  record.final_prediction;
-
+    const preinput = record.final_prediction;
+  
     if (preinput) {
-      setInput(preinput);
-      getResponse(preinput); // send immediately
+      getResponse(preinput);
+      // setInput(preinput);
     }
+  
+    hasFetchedOnMount.current = true;
   }, []);
+  
 
   const sendMessage = () => {
     if (!input.trim()) return;
@@ -110,8 +117,8 @@ export default function ChatInterface() {
               <div className="flex justify-between items-center">
                 <h3 className="font-bold text-sm text-green-100 tracking-wider">DEFENSE AI TERMINAL</h3>
                 <div className="flex items-center text-xs">
-                  <div className="w-2 h-2 bg-green-400 rounded-full mr-1 animate-pulse shadow-lg shadow-green-400/50"></div>
-                  <span className="text-green-400">SECURE</span>
+                  {/* <div className="w-2 h-2 bg-green-400 rounded-full mr-1 animate-pulse shadow-lg shadow-green-400/50"></div> */}
+                  {/* <span className="text-green-400">SECURE</span>   */}
                 </div>
                 <button
                 onClick={()=>{

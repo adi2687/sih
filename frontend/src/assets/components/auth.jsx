@@ -466,7 +466,7 @@ export default function AuthPages() {
 
                                         <button className="w-full p-3 bg-gray-900 border border-amber-400 rounded text-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm font-mono placeholder-amber-700"
                                             onClick={
-                                                otpsent? handleverifyotp: handleofficialsendotp
+                                                otpsent ? handleverifyotp : handleofficialsendotp
                                             }>
                                             {/* {sending ? "Sending OTP..." : "Send Code to Mobile Number"} */}
                                             {sending}
