@@ -1,0 +1,21 @@
+<!-- File only for testing purposes will not be included in the later versions -->
+
+<!doctype html>
+<html>
+<head><title>Message Classifier</title></head>
+<body>
+  <h2>Enter message or upload an image</h2>
+
+  <form action="/predict" method="post">
+    <input type="text" name="message" placeholder="Enter text here" style="width:400px"/>
+    <button type="submit">Predict</button>
+  </form>
+
+  <br>
+
+  <form action="/predict" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" accept="image/*" />
+    <button type="submit">Upload & Predict</button>
+  </form>
+</body>
+</html>

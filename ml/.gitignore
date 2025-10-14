@@ -1,0 +1,9 @@
+mixed.csv
+layer1.pkl
+test.py
+tfidf.pkl
+myenv/
+venv/
+.env
+main1.py
+results.html
